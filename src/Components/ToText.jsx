@@ -1,7 +1,6 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import * as pdfjsLib from "pdfjs-dist";
 import pdfjsWorker from "pdfjs-dist/build/pdf.worker?url";
-
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 const ToText = () => {
@@ -54,6 +53,7 @@ const ToText = () => {
 
     fileReader.readAsArrayBuffer(file);
   };
+
   return (
     <div className="p-4 max-w-2xl mx-auto">
       <label className="block mb-2 font-semibold">
@@ -61,17 +61,18 @@ const ToText = () => {
       </label>
       <button
         type="button"
-        className="mb-2 px-4 py-2 bg-blue-600 text-white rounded"
+        className="mb-2 px-4 py-2 bg-blue-600 text-white rounded cursor-pointer"
         onClick={() => fileInputRef.current.click()}
       >
         Choose PDF
       </button>
       <input
+        className="hidden"
         type="file"
         accept="application/pdf"
         onChange={handleFileChange}
         ref={fileInputRef}
-        style={{ display: "none" }}
+
       />
       {fileName && (
         <div className="mb-2 text-sm text-gray-600">Selected: {fileName}</div>
